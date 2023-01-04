@@ -35,5 +35,13 @@ export function createForm() {
   );
   $container.prepend($form);
 
-  return $form;
+  return {
+    $form,
+    $inputname,
+    $inputsurename,
+    $inputlastname,
+    $inputage,
+    $inputhobby,
+    $btn,
+  };
 }

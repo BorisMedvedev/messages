@@ -1,5 +1,6 @@
-export function createUserTr(dataArray) {
-  const newListData = [...dataArray];
+import { listData } from "./main.js";
+export function createUserTr() {
+  const newListData = [...listData];
 
   for (const oneUser of newListData) {
     oneUser.fio =
@@ -27,6 +28,6 @@ export function createUserTr(dataArray) {
     $tableBody.append($userTr);
     $table.append($tableBody);
 
-    return $userTr;
+    return { $userTr };
   }
 }

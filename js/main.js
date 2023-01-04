@@ -2,7 +2,7 @@ import { createForm } from "./createform.js";
 import { createElement } from "./createelement.js";
 import { createUserTr } from "./createusertr.js";
 //база данных
-let listData = [
+export let listData = [
   {
     name: "Борис",
     surename: "Николаевич",
@@ -14,9 +14,18 @@ let listData = [
 
 const form = createForm();
 createElement();
-createUserTr(listData);
+createUserTr();
 
-form.addEventListener("submit", (e) => {
+form.$form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("gggggg");
+
+  listData.push({
+    name: form.$inputname.value,
+    surename: form.$inputsurename.value,
+    lastname: form.$inputlastname.value,
+    age: form.$inputage.value,
+    hobby: form.$inputhobby.value,
+  });
+  form.$form.reset();
+  createUserTr();
 });
