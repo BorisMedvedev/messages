@@ -67,7 +67,7 @@ function createForm() {
       age: parseInt($inputage.value),
       hobby: $inputhobby.value.trim(),
     });
-
+    $form.reset();
     render(listData);
   });
 
