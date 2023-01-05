@@ -48,17 +48,29 @@ function createForm() {
 
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
+    if ($inputname.value.trim() === "") {
+      return;
+    }
+    if ($inputsurename.value.trim() === "") {
+      return;
+    }
+    if ($inputlastname.value.trim() === "") {
+      return;
+    }
+    if ($inputhobby.value.trim() === "") {
+      return;
+    }
     listData.push({
-      name: $inputname.value,
-      surename: $inputsurename.value,
-      lastname: $inputlastname.value,
+      name: $inputname.value.trim(),
+      surename: $inputsurename.value.trim(),
+      lastname: $inputlastname.value.trim(),
       age: parseInt($inputage.value),
-      hobby: $inputhobby.value,
+      hobby: $inputhobby.value.trim(),
     });
 
-    createUserTr();
+    render(listData);
   });
-  console.log(listData);
+
   return {
     $form,
     $inputname,
@@ -107,8 +119,25 @@ function createElement() {
 }
 createElement();
 
-function createUserTr() {
-  const newListData = [...listData];
+function createUserTr(oneUser) {
+  const $userTr = document.createElement("tr");
+  const $userThFio = document.createElement("th");
+  const $userThAge = document.createElement("th");
+  const $userThYearBirth = document.createElement("th");
+  const $userThHobby = document.createElement("th");
+
+  $userThFio.textContent = oneUser.fio;
+  $userThAge.textContent = oneUser.age;
+  $userThYearBirth.textContent = oneUser.yearBirth;
+  $userThHobby.textContent = oneUser.hobby;
+  $userTr.append($userThFio, $userThAge, $userThYearBirth, $userThHobby);
+  return $userTr;
+}
+
+function render(newArray) {
+  const $body = document.querySelector("tbody");
+  $body.innerHTML = "";
+  const newListData = [...newArray];
   for (const oneUser of newListData) {
     oneUser.fio =
       oneUser.name + " " + oneUser.surename + " " + oneUser.lastname;
@@ -117,20 +146,9 @@ function createUserTr() {
 
   //отрисовка
   for (const oneUser of newListData) {
-    const $body = document.querySelector("tbody");
-    const $userTr = document.createElement("tr");
-    const $userThFio = document.createElement("th");
-    const $userThAge = document.createElement("th");
-    const $userThYearBirth = document.createElement("th");
-    const $userThHobby = document.createElement("th");
+    const $newTr = createUserTr(oneUser);
 
-    $userThFio.textContent = oneUser.fio;
-    $userThAge.textContent = oneUser.age;
-    $userThYearBirth.textContent = oneUser.yearBirth;
-    $userThHobby.textContent = oneUser.hobby;
-    $userTr.append($userThFio, $userThAge, $userThYearBirth, $userThHobby);
-    $body.append($userTr);
-    return { $userTr };
+    $body.append($newTr);
   }
 }
-createUserTr();
+render(listData);
