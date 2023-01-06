@@ -4,7 +4,7 @@ let listData = [
     surename: "Николаевич",
     lastname: "Медведев",
     age: 44,
-    hobby: "верстка",
+    hobby: "Верстка",
   },
 ];
 
@@ -49,15 +49,19 @@ function createForm() {
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
     if ($inputname.value.trim() === "") {
+      alert("Необходимо заполнить все поля");
       return;
     }
     if ($inputsurename.value.trim() === "") {
+      alert("Необходимо заполнить все поля");
       return;
     }
     if ($inputlastname.value.trim() === "") {
+      alert("Необходимо заполнить все поля");
       return;
     }
     if ($inputhobby.value.trim() === "") {
+      alert("Необходимо заполнить все поля");
       return;
     }
     listData.push({
@@ -140,7 +144,7 @@ function render(newArray) {
   const newListData = [...newArray];
   for (const oneUser of newListData) {
     oneUser.fio =
-      oneUser.name + " " + oneUser.surename + " " + oneUser.lastname;
+      oneUser.lastname + " " + oneUser.name + " " + oneUser.surename;
     oneUser.yearBirth = 2022 - oneUser.age;
   }
 
