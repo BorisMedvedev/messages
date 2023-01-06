@@ -6,6 +6,13 @@ let listData = [
     age: 44,
     hobby: "Верстка",
   },
+  {
+    name: "Кирилл",
+    surename: "Борисович",
+    lastname: "Медведев",
+    age: 17,
+    hobby: "Спорт",
+  },
 ];
 
 function createForm() {
@@ -145,7 +152,7 @@ function render(newArray) {
   for (const oneUser of newListData) {
     oneUser.fio =
       oneUser.lastname + " " + oneUser.name + " " + oneUser.surename;
-    oneUser.yearBirth = 2022 - oneUser.age;
+    oneUser.yearBirth = new Date().getFullYear() - oneUser.age - 1;
   }
 
   //отрисовка
